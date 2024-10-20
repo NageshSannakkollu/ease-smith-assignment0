@@ -1,25 +1,3357 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import {v4 as uuidv4} from "uuid";
+import Home from "./components/Home";
+import ThankYouPage from "./components/ThankYouPage"
+import { useState } from "react";
+import PlantsContext from "./context/PlantsContext";
+import PlantsAndPots from "./components/PlantsAndPots";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const initialPlantsList = [
+{
+  id:uuidv4(),
+  category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintenance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+  category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409507/united-nursery-house-plants-20736-64_600_mqun9r.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409587/desert-horizon-nursery-on-site-november-2020-dsc09694-scaled_xoqnof.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409558/work-nature-growth-plant-lawn-house-884622-pxhere.com__nnuvny.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409590/greenhouse4-H2-2015_uc1yqh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308759/7973d62829a030074ad8b6ad34_xkl34i.png"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308754/daa994fdb511faa82ea79a5ef58fbb1a_ctlrrj.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729308760/e1ce63ff429a0c018fd6e2e5dd614458_n2a0lj.png"
+},
+{
+  id:uuidv4(),
+ category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409422/Untitled-design-39_fhzed5.png"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409424/IMG_1718-e1588177834703_ip0wfq.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409429/Green_house_ksolrr.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409433/Untitled_design_2_1080x1080_crop_center_mrjtlh.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409440/IMG_7787aaaaa_jpxvgl.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409444/640px-Cutchogue_-_Oregon_Road_-_Plant_Nursery_aaw8xx.jpg"
+},
+{
+  id:uuidv4(),
+  plantName:"Monsterra",
+   category:"plants",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409449/IMG_8385_2_rso11m.jpg"
+},
+{
+  id:uuidv4(),
+   category:"plants",
+  plantName:"Monsterra",
+  plantType:"Indoor plant, low maintainance",
+  rating:4.9,
+  price:359,
+  dealPrice:299,
+  isFavorite:false,
+  plantImage:"https://res.cloudinary.com/dksgsqhdk/image/upload/v1729409457/81PekIv3LpL._AC_UF894_1000_QL80__ozbf8a.jpg"
+}
+]
+
+
+const App = () => {
+  const [plantsList,setPlantsList] = useState(initialPlantsList)
+  const [currentPlantsLength,setCurrentListLength] = useState(6);
+  const lengthOfPlants = plantsList.length;
+  const finalPlantsList = plantsList.slice(currentPlantsLength-6,currentPlantsLength);
+  console.log(finalPlantsList);
+  const clickOnCartItem = (id) =>{
+    console.log(id)
+  } 
+  const clickedOnPrev = () => {
+    if(currentPlantsLength > 11){
+      setCurrentListLength(prevScore => prevScore-6)
+    }
+  }
+  const clickedOnNext = () => {
+    if(currentPlantsLength < lengthOfPlants){
+      setCurrentListLength(prevScore => prevScore + 6)
+    }
+  }
+
+  console.log("Plants Length",lengthOfPlants)
+  console.log("Length:",currentPlantsLength)
+  return(
+    <PlantsContext.Provider 
+      value={{
+        finalPlantsList,
+        plantsList,
+        clickOnCartItem: clickOnCartItem(),
+        prevButtonClicked:clickedOnPrev,
+        nextButtonClicked:clickedOnNext,
+      }}
+      >
+  <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<Home/>}/>
+      <Route exact path="/plants-and-pots" element={<PlantsAndPots/>} />
+      <Route exact path="/thank-you-page/:id" element={<ThankYouPage/>}/>
+    </Routes>
+  </BrowserRouter>
+  </PlantsContext.Provider>
+ )
 }
 
-export default App;
+
+export default App

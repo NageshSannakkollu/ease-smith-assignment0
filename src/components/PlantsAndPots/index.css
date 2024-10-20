@@ -1,0 +1,113 @@
+.search-icon {
+    height: 16px;
+    width: 16px;
+}
+.plant-image {
+    height: 28px;
+    width: 25px;
+}
+.search-plant-horz-line-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.plants-button {
+    width: 114px;
+    height: 37px;
+    background-color: #165315;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+    border: 0px;
+}
+.pots-button {
+    width: 114px;
+    height: 37px;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+    margin-left: 20px;
+    color: #a3a0a0;
+}
+.search-plant-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.search-plant-input {
+    border: 0px;
+    cursor: pointer;
+    outline: none;
+    width: 340px;
+}
+.horz-line {
+    width: 370px;
+}
+
+.filter-plant-section-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.filter-section-container {
+    padding: 10px;
+    background-color: #F0FFE5;
+    height: 715px;
+    width: 304px;
+}
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 0.5px;
+}
+.filter-horizontal-line {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.products-length-sort-by-container {
+    display: flex;
+    align-items: center;
+}
+.sort-by-container {
+    background-color:#165315;
+    color: #ffffff;
+    height: 24px;
+    width: 125px;
+    margin-left: 5px;
+}
+.plants-sort-by-main-container {
+    margin-left: 30px;
+    width: 900px;
+}
+
+.un-ordered-plants-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.prev-next-buttons-container {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.prev-next-button {
+    height: 37px;
+    width: 114px;
+    border: 0px;
+    background-color: aqua;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}

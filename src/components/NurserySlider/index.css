@@ -1,0 +1,18 @@
+.nursery-slider-container {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+@media screen and (max-width:767px){
+    .nursery-slider-container{
+        display: none;
+    }
+}
+
+@media screen and (min-width:768px){
+    .nursery-slider-container1{
+        display: none;
+    }
+}
+

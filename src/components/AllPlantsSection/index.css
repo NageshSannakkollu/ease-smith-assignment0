@@ -1,0 +1,220 @@
+.plant-details-item-list {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.plant-list-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+}
+
+.order-placed-container {
+    padding: 10px 30px;
+    height: 530px;
+    width: 453px;
+    background-color:#ffffff;
+    box-shadow: 0px 1px 4px 0px #000;
+}
+.cancel-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.cancel-button {
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    outline: none;
+}
+
+.your-cart-horizontal-line {
+    width: 100%;
+}
+.wishing-order-title  {
+    height: 83px;
+    width: 230px;
+    text-align: center;
+    color: #165315;
+    font-weight: 600;
+    font-size: 24px;
+}
+.your-cart-title {
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.order-inside-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-wishing-plant-image-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+.greeting-title-image-container {
+    background-image: url("https://res.cloudinary.com/dksgsqhdk/image/upload/v1729355326/Ellipse_41_sa7xsp.png");
+    background-position:  top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-plant-image {
+    height: 98px;
+    width: 97px;
+}
+
+.thankyou-description {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #165315;
+}
+
+.wish-continue-button-container {
+    background-image: url("https://res.cloudinary.com/dksgsqhdk/image/upload/v1729355325/Ellipse_40_ocvcrt.png");
+    background-position:  bottom end;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.continue-shopping-button {
+    background-color: #165315;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    height: 47px;
+    width: 307px;
+    margin-top: 40px;
+}
+
+.plant-detail-image {
+    height: 246px;
+    width: 268px;
+    background-size: cover;
+}
+
+.view-product-button {
+    background-color:#165315;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    width: 268px;
+    height: 36px;
+    border: 0;
+}
+
+.plant-name-type-price-buttons-container {
+    line-height: 0.5px;
+    height: 160px;
+    width: 268px;
+}
+
+.wish-image-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+.wished-image {
+    height:23px;
+    width: 25px;
+    padding-top: 10px;  
+    padding-right: 10px;
+}
+.rating-image{
+    width: 87px;
+    height: 19px;
+    margin-right: 10px;
+}
+
+.ratings-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.price-title {
+    text-decoration: line-through;
+    font-weight: 400;
+    color:#5E5A5A;
+    font-size: 16px;
+}
+.deal-price {
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.add-to-cart-rent-buttons-container {
+    display: flex;
+    align-items: center;
+}
+.add-to-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 37px;
+    width: 149px;
+    background-color:#165315;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    border-radius: 8px;
+}
+.buy-on-rent-button {
+    width: 114px;
+    height: 37px;
+    cursor: pointer;
+    outline: none;  
+    border-width: 1px;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+@media screen and (max-width:767px){
+    .plant-detail-image {
+        height: 250px;
+        width: 220px;
+    }
+    .view-product-button{
+        height: 25x;
+        width: 220px;
+        font-size: 16px;
+    }
+    .plant-list-item {
+        width: 220px;
+    }
+    .add-to-cart-title {
+        font-size: 12px;
+    }
+    .add-to-cart-button {
+        width: 100px;
+    }
+    .buy-on-rent-button{
+        width: 100px;
+    }
+
+}
